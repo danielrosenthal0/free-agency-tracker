@@ -9,15 +9,17 @@
   .list {
     display: flex;
     gap: 1rem;
+    list-style: none;
   }
   
   .list a {
     text-decoration: none;
     color: var(--color-primary-400);
+    list-style: none;
   }
   
   .list a:hover,
   .list a.active {
-    color: var(--color-primary-800);
+    color: var(--color-primary-800)
   }
   

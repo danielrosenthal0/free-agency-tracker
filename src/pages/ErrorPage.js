@@ -13,7 +13,7 @@ const Error = () => {
 
   if (error.status === 404) {
     title = "Not found.";
-    message = "Could not find page";
+    message = "Could not find page.";
   }
 
   return (
