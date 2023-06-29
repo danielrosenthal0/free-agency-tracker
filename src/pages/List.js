@@ -7,9 +7,6 @@ const List = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [freeAgents, setFreeAgents] = useState([]);
 
-  
-
-  
   const API_URL =
     "/api/en/league/free_agents.json?api_key=dp432uckqhw2kd48hv9g677d";
 
