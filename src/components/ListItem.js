@@ -3,7 +3,8 @@ const ListItem = ({ player }) => {
       <tr>
         <td>{player.full_name}</td>
         <td>{player.position}</td>
-        {/* <td>{player.team}</td> */}
+        <td>{player.experience}</td>
+        <td>{player.updated}</td>
         
       </tr>
     );
