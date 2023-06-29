@@ -1,10 +1,10 @@
-const ListItem = ({ item }) => {
+const ListItem = ({ player }) => {
     return (
       <tr>
-        <td>{item.playerName}</td>
-        <td>{item.position}</td>
-        <td>{item.team}</td>
-        {/* Render more table cells with item data */}
+        <td>{player.full_name}</td>
+        <td>{player.position}</td>
+        {/* <td>{player.team}</td> */}
+        
       </tr>
     );
   };

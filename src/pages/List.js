@@ -1,7 +1,7 @@
-import axios from "axios";
+
 import { useEffect, useState } from "react";
 import Table from "../components/Table";
-import { json } from "react-router-dom";
+
 
 const List = () => {
   const [freeAgents, setFreeAgents] = useState([]);
@@ -14,6 +14,7 @@ const List = () => {
           API_URL
         );
         const jsonData = await response.json()
+        
         setFreeAgents(jsonData);
       } catch (error) {
         console.log(error);
@@ -21,12 +22,14 @@ const List = () => {
     };
     fetchFreeAgents();
   }, []);
+  
+  
 
   return (
     <>
       <h1>List view page</h1>
-      {/* <Table data={freeAgents} /> */}
-      <div>{freeAgents ? JSON.stringify(freeAgents) : 'Loading...'}</div>
+      <Table freeAgents={freeAgents} />
+      {/* <div>{freeAgents ? JSON.stringify(freeAgents) : 'Loading...'}</div> */}
     </>
   );
 };
