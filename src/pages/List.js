@@ -26,6 +26,8 @@ const List = () => {
 
   const freeAgentsArray = Object.values(freeAgents);
   const players = Array.isArray(freeAgentsArray[1]) ? freeAgentsArray[1] : [];
+
+  
   const totalPlayers = players.length;
   const totalPages = Math.ceil(totalPlayers / playersPerPage);
   const lastPlayer = currentPage * playersPerPage;

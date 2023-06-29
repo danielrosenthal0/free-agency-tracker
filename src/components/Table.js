@@ -10,6 +10,9 @@ const Table = ({ freeAgents , first, last}) => {
     const dateA = new Date(a.updated);
     const dateB = new Date(b.updated);
     return dateB - dateA;
+  }).filter((player) => {
+    const year = new Date(player.updated).getFullYear();
+    return year === 2022 || year === 2023
   });
 
   const playersToShow = sortedPlayers.slice(first, last);
