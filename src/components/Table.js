@@ -1,15 +1,18 @@
 import ListItem from "./ListItem";
 
-const Table = ({ freeAgents }) => {
+const Table = ({ freeAgents , first, last}) => {
+
+    
   const freeAgentsArray = Object.values(freeAgents);
-
   const players = Array.isArray(freeAgentsArray[1]) ? freeAgentsArray[1] : [];
-
+  console.log(players);
   const sortedPlayers = [...players].sort((a, b) => {
     const dateA = new Date(a.updated);
     const dateB = new Date(b.updated);
     return dateB - dateA;
   });
+
+  const playersToShow = sortedPlayers.slice(first, last);
 
   return (
     <>
@@ -21,12 +24,10 @@ const Table = ({ freeAgents }) => {
               <th>Position</th>
               <th>Experience</th>
               <th>Updated</th>
-
-              {/* <th>Team</th> */}
             </tr>
           </thead>
           <tbody>
-            {sortedPlayers.map((player) => (
+            {playersToShow.map((player) => (
               <ListItem
                 key={player.id}
                 player={player}
