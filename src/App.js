@@ -3,6 +3,7 @@ import RootLayout from "./pages/Root";
 import ErrorPage from "./pages/ErrorPage";
 import List from './pages/List';
 import Home from "./pages/Home";
+import News from "./pages/News";
 
 
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             path: ':page'
           }
         ]
+      },
+      {
+        path: '/news',
+        element: <News/>
       }
     ]
   }

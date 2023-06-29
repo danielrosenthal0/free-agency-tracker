@@ -24,11 +24,20 @@ const List = () => {
     fetchFreeAgents();
   }, []);
 
+  //filtering and sorting data before sending to components
   const freeAgentsArray = Object.values(freeAgents);
   const players = Array.isArray(freeAgentsArray[1]) ? freeAgentsArray[1] : [];
 
-  
-  const totalPlayers = players.length;
+  const sortedPlayers = [...players].sort((a, b) => {
+    const dateA = new Date(a.updated);
+    const dateB = new Date(b.updated);
+    return dateB - dateA;
+  }).filter((player) => {
+    const year = new Date(player.updated).getFullYear();
+    return year === 2022 || year === 2023
+  });
+
+  const totalPlayers = sortedPlayers.length;
   const totalPages = Math.ceil(totalPlayers / playersPerPage);
   const lastPlayer = currentPage * playersPerPage;
   const firstPlayer = lastPlayer - playersPerPage;
