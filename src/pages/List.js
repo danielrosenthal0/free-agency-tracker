@@ -8,7 +8,7 @@ const List = () => {
   const [freeAgents, setFreeAgents] = useState([]);
 
   const API_URL =
-    "/api/en/league/free_agents.json?api_key=dp432uckqhw2kd48hv9g677d";
+    "/api/en/league/free_agents.json?api_key=4qtutsebhny3zgp3jadur9n6";
 
   useEffect(() => {
     const fetchFreeAgents = async () => {
