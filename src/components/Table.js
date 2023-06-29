@@ -3,7 +3,13 @@ import ListItem from "./ListItem";
 const Table = ({ freeAgents }) => {
   const freeAgentsArray = Object.values(freeAgents);
 
-  const players = freeAgentsArray[1];
+  const players = Array.isArray(freeAgentsArray[1]) ? freeAgentsArray[1] : [];
+
+  const sortedPlayers = [...players].sort((a, b) => {
+    const dateA = new Date(a.updated);
+    const dateB = new Date(b.updated);
+    return dateB - dateA;
+  });
 
   return (
     <>
@@ -20,7 +26,7 @@ const Table = ({ freeAgents }) => {
             </tr>
           </thead>
           <tbody>
-            {players.map((player) => (
+            {sortedPlayers.map((player) => (
               <ListItem
                 key={player.id}
                 player={player}
