@@ -10,9 +10,9 @@ const List = () => {
   useEffect(() => {
     const fetchFreeAgents = async () => {
       try {
-        const response = await fetch("/free-agents");
+        const response = await fetch("http://localhost:3001/free-agents");
         const jsonData = await response.json();
-
+        // console.log(jsonData);
         setFreeAgents(jsonData);
       } catch (error) {
         console.log(error);
@@ -48,7 +48,7 @@ const List = () => {
     <>
       <h1>List view page</h1>
       <Table freeAgents={freeAgents} first={firstPlayer} last={lastPlayer} />
-      {freeAgents ? <Pagination
+      {freeAgents.length ? <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
