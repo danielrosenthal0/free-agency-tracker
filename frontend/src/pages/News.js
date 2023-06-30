@@ -7,6 +7,7 @@ const News = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
+        
         const response = await fetch("http://localhost:3001/transactions");
         const jsonData = await response.json();
         console.log(jsonData.players);
