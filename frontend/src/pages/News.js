@@ -1,31 +1,43 @@
 import { useEffect, useState } from "react";
 
 const News = () => {
-
-  const [tweets, setTweets] = useState([]);
+  const [news, setNews] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchTweets = async () => {
+    const fetchNews = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/recent-tweets');
-        const data = await response.json();
-        setTweets(data);
-      } catch (error){
-        console.error(error);
+        const response = await fetch("http://localhost:3001/transactions");
+        const jsonData = await response.json();
+        console.log(jsonData.players);
+        setNews(jsonData.players);
+        setLoaded(true);
+      } catch (error) {
+        console.log(error);
       }
     };
-
-    fetchTweets();
+    fetchNews();
   }, []);
 
   return (
     <div>
       <h1>Recent free agency news</h1>
-      {/* {tweets.map((tweet) => (
-        <div key={tweet.id}>
-          <p>{tweet.text}</p>
-        </div>
-      ))} */}
+      {loaded ? (
+        news.map((player) => (
+          <div key={player.id}>
+            {player.transfers && player.transfers.length > 0 ? (
+              player.transfers.map((transfer) => (
+                <p key={transfer.id}>{transfer.desc}</p>
+              ))
+            ) : (
+              <p>No transfers for this player.</p>
+            )}
+          </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    
     </div>
   );
 };
