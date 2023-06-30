@@ -7,13 +7,10 @@ const List = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [freeAgents, setFreeAgents] = useState([]);
 
-  const API_URL =
-    "/api/en/league/free_agents.json?api_key=4qtutsebhny3zgp3jadur9n6";
-
   useEffect(() => {
     const fetchFreeAgents = async () => {
       try {
-        const response = await fetch(API_URL);
+        const response = await fetch("/free-agents");
         const jsonData = await response.json();
 
         setFreeAgents(jsonData);
