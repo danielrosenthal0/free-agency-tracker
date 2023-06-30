@@ -14,6 +14,7 @@ const List = () => {
         const jsonData = await response.json();
         // console.log(jsonData);
         setFreeAgents(jsonData);
+     
       } catch (error) {
         console.log(error);
       }
@@ -48,11 +49,11 @@ const List = () => {
     <>
       <h1>List view page</h1>
       <Table freeAgents={freeAgents} first={firstPlayer} last={lastPlayer} />
-      {freeAgents.length ? <Pagination
+      <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
-      /> : 'Loading...'}
+      />
       
     </>
   );
