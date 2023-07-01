@@ -24,7 +24,7 @@ const Navigation = () => {
                 isActive ? classes.active : undefined
               }
             >
-              List
+              Available Free Agents
             </NavLink>
           </li>
           <li>
@@ -34,7 +34,7 @@ const Navigation = () => {
                 isActive ? classes.active : undefined
               }
             >
-              News
+              Confirmed Transactions
             </NavLink>
           </li>
         </ul>
