@@ -37,6 +37,16 @@ const Navigation = () => {
               Confirmed Transactions
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/tweets"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Tweets
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </header>
