@@ -41,16 +41,7 @@ const News = () => {
                   player.transfers.map((transfer) => (
                     <div>
                       <p key={transfer.id}>{transfer.desc}</p>
-                      
-                      {/* <img
-                        src={
-                          teamLogoMap[
-                            transfer.to_team?.reference ||
-                              transfer.from_team?.reference
-                          ]
-                        }
-                        alt="Team Logo"
-                      /> */}
+          
                       {transfer.from_team && (
                         <img
                         src={teamLogoMap[transfer.from_team.reference]}
