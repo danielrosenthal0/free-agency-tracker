@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import teamLogoMap from "../components/TeamLogoMap";
 import classes from './News.module.css'
 import useTimeFormatter from "../hooks/useTimeFormatter";
+import DateDropdown from "../components/DateDropdown";
 
 const News = () => {
   const [news, setNews] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch("http://localhost:3001/transactions");
+        const response = await fetch(`http://localhost:3001/transactions?date=${selectedDate}`);
         if (!response.ok) {
           throw new Error("Failed to fetch transactions");
         }
@@ -25,8 +27,11 @@ const News = () => {
         setError("Failed to retrieve transactions");
       }
     };
-    fetchNews();
-  }, []);
+    if (selectedDate) {
+      fetchNews();
+    }
+    
+  }, [selectedDate]);
   // const formattedTimes = news.map((player) => {
   //   if (player.transfers && player.transfers.length > 0) {
   //     return player.transfers.map((transfer) =>
@@ -39,6 +44,7 @@ const News = () => {
   return (
     <div>
       <h1>Recent free agency news</h1>
+      <DateDropdown onSelectDate={setSelectedDate}/>
       {error ? (
         <p>Error: {error}</p>
       ) : (
