@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import teamLogoMap from "../components/TeamLogoMap";
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -14,6 +15,7 @@ const News = () => {
         }
         const jsonData = await response.json();
         console.log(jsonData.players);
+
         setNews(jsonData.players);
         setLoaded(true);
       } catch (error) {
@@ -36,7 +38,23 @@ const News = () => {
               <div key={player.id}>
                 {player.transfers && player.transfers.length > 0 ? (
                   player.transfers.map((transfer) => (
-                    <p key={transfer.id}>{transfer.desc}</p>
+                    <div>
+                      <p key={transfer.id}>{transfer.desc}</p>
+                      {console.log(teamLogoMap[
+                            transfer.to_team?.reference ||
+                              transfer.from_team?.reference
+                          ])}
+                      <img
+                        src={
+                          teamLogoMap[
+                            transfer.to_team?.id ||
+                              transfer.from_team?.id
+                          ]?.reference
+                        }
+                        alt="Team Logo"
+                      />
+                      
+                    </div>
                   ))
                 ) : (
                   <p>No transfers for this player.</p>

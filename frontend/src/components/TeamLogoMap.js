@@ -1,5 +1,7 @@
+import blazers from '../assets/blazers.png';
+
 const teamLogoMap = {
-    "1610612757" : '../assets/blazers.png',
+    "1610612757" : blazers,
     "1610612751" : '../assets/nets.png',
     "1610612743" : '../assets/nuggets.png',
     "1610612756" : '../assets/suns.png',
@@ -17,3 +19,5 @@ const teamLogoMap = {
     "1610612745" : '../assets/rockets.png',
     "1610612754" : '../assets/pacers.png'
 }
+
+export default teamLogoMap;
