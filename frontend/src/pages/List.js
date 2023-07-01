@@ -6,19 +6,23 @@ const List = () => {
   const playersPerPage = 25;
   const [currentPage, setCurrentPage] = useState(1);
   const [freeAgents, setFreeAgents] = useState([]);
-
-  const API_URL =
-    "/api/en/league/free_agents.json?api_key=4qtutsebhny3zgp3jadur9n6";
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchFreeAgents = async () => {
       try {
-        const response = await fetch(API_URL);
+        const response = await fetch("http://localhost:3001/free-agents");
+        if (!response.ok) {
+          throw new Error('Failed to fetch free agents');
+        }
         const jsonData = await response.json();
-
+        console.log(jsonData);
         setFreeAgents(jsonData);
+        console.log(freeAgents); 
+     
       } catch (error) {
         console.log(error);
+        setError('Failed to retrieve free agents');
       }
     };
     fetchFreeAgents();
@@ -49,13 +53,18 @@ const List = () => {
 
   return (
     <>
-      <h1>List view page</h1>
+    {error ? <p>Error: {error} </p> :
+    <>
+    <h1>List view page</h1>
       <Table freeAgents={freeAgents} first={firstPlayer} last={lastPlayer} />
-      {freeAgents ? <Pagination
+      <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={handlePageChange}
-      /> : 'Loading...'}
+      />
+    </>
+    }
+      
       
     </>
   );
