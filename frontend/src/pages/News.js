@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import teamLogoMap from "../components/TeamLogoMap";
 import classes from './News.module.css'
+import useTimeFormatter from "../hooks/useTimeFormatter";
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -26,6 +27,14 @@ const News = () => {
     };
     fetchNews();
   }, []);
+  // const formattedTimes = news.map((player) => {
+  //   if (player.transfers && player.transfers.length > 0) {
+  //     return player.transfers.map((transfer) =>
+  //       useTimeFormatter(new Date(transfer.last_modified))
+  //     );
+  //   }
+  //   return [];
+  // });
 
   return (
     <div>
@@ -35,13 +44,12 @@ const News = () => {
       ) : (
         <div>
           {loaded ? (
-            news.map((player) => (
+            news.map((player, index) => (
               <div key={player.id}>
                 {player.transfers && player.transfers.length > 0 ? (
                   player.transfers.map((transfer) => (
                     <div>
                       <p key={transfer.id}>{transfer.desc}</p>
-          
                       {transfer.from_team && (
                         <img
                         src={teamLogoMap[transfer.from_team.reference]}
@@ -54,7 +62,7 @@ const News = () => {
                         alt={transfer.to_team.name}
                       />
                       )}
-                      
+                      {/* <p>{formattedTimes[index][1]}</p> */}
                     </div>
                   ))
                 ) : (
