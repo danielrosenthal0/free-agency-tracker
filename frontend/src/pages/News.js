@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import teamLogoMap from "../components/TeamLogoMap";
+import classes from './News.module.css'
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -40,10 +41,7 @@ const News = () => {
                   player.transfers.map((transfer) => (
                     <div>
                       <p key={transfer.id}>{transfer.desc}</p>
-                      {/* {console.log(teamLogoMap[
-                            transfer.to_team?.reference ||
-                              transfer.from_team?.reference
-                          ])} */}
+                      
                       <img
                         src={
                           teamLogoMap[
