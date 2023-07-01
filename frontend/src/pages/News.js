@@ -42,7 +42,7 @@ const News = () => {
                     <div>
                       <p key={transfer.id}>{transfer.desc}</p>
                       
-                      <img
+                      {/* <img
                         src={
                           teamLogoMap[
                             transfer.to_team?.reference ||
@@ -50,7 +50,19 @@ const News = () => {
                           ]
                         }
                         alt="Team Logo"
+                      /> */}
+                      {transfer.from_team && (
+                        <img
+                        src={teamLogoMap[transfer.from_team.reference]}
+                        alt={transfer.from_team.name}
                       />
+                      )}
+                      {transfer.to_team && (
+                        <img
+                        src={teamLogoMap[transfer.to_team.reference]}
+                        alt={transfer.to_team.name}
+                      />
+                      )}
                       
                     </div>
                   ))
