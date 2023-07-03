@@ -58,7 +58,6 @@ const teamLogoMap = {
     "1610612766" : hornets,
     "1610612762" : jazz,
     "1610612760" : thunder,
-    "1610612765" : pistons,
     "1610612764" : wizards,
     "1610612740" : pelicans
 }
