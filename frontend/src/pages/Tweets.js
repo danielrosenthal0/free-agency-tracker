@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
 
 const Tweets = () => {
   const [tweets, setTweets] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchTweets = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/tweets');
-        setTweets(response.data);
+        const response = await fetch('/tweets');
+        if (!response.ok) {
+          throw new Error("Failed to fetch tweets");
+        }
+        const data = await response.json();
+        setTweets(data);
+        console.log(data);
+        setLoaded(true);
       } catch (error) {
         console.error('Error occurred while fetching tweets:', error);
       }
@@ -20,11 +27,12 @@ const Tweets = () => {
   return (
     <div>
       <h2>Recent Tweets</h2>
-      <ul>
+      {tweets ? <p>Loading...</p> : <ul>
         {tweets.map(tweet => (
           <li key={tweet.id}>{tweet.text}</li>
         ))}
-      </ul>
+      </ul>}
+      
     </div>
   );
 };

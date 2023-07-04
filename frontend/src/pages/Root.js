@@ -6,6 +6,7 @@ const RootLayout = () => {
     
     return (
         <Fragment>
+            <h1>Get Ready to Learn Chinese, Buddy</h1>
             <Navigation/>
             <main>
                 <Outlet/>
