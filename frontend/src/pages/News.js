@@ -12,6 +12,8 @@ const News = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [headshots, setHeadshots] = useState({});
 
+ 
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
@@ -67,26 +69,28 @@ const News = () => {
               <div key={player.id}>
                 {player.transfers && player.transfers.length > 0 ? (
                   player.transfers.map((transfer) => (
-                    <div>
-                      <p key={transfer.id}>{transfer.desc}</p>
+                    <div key={transfer.id}>
+                      <p>{transfer.desc}</p>
+                      {headshots[player.reference] && (
+                        <img
+                          src={headshots[player.reference]}
+                          alt={player.full_name}
+                        />
+                      )}
                       {transfer.from_team && (
                         <img
                         src={teamLogoMap[transfer.from_team.reference]}
                         alt={transfer.from_team.name}
                       />
                       )}
+                      →
                       {transfer.to_team && (
                         <img
                         src={teamLogoMap[transfer.to_team.reference]}
                         alt={transfer.to_team.name}
                       />
                       )}
-                     {headshots[player.reference] && (
-                        <img
-                          src={headshots[player.reference]}
-                          alt={player.full_name}
-                        />
-                      )}
+                     
                     </div>
                   ))
                 ) : (

@@ -55,7 +55,7 @@ const List = () => {
     <>
     {error ? <p>Error: {error} </p> :
     <>
-    <h1>List view page</h1>
+    <h1>Available Free Agents</h1>
       <Table freeAgents={freeAgents} first={firstPlayer} last={lastPlayer} />
       <Pagination
         currentPage={currentPage}
