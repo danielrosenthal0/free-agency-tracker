@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import teamLogoMap from "../components/TeamLogoMap";
 import classes from './News.module.css'
 import useTimeFormatter from "../hooks/useTimeFormatter";
 import DateDropdown from "../components/DateDropdown";
 import TeamCircle from "../components/TeamCircle";
+import Slider from "../components/Slider";
 // import DateDropdown from "../components/DateDropdown";
 
 const News = () => {
@@ -12,7 +13,9 @@ const News = () => {
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [headshots, setHeadshots] = useState({});
+  const teamCircleRef = useRef(null);
 
+  
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -59,7 +62,8 @@ const News = () => {
   return (
     <div>
       <h1>Recent free agency news</h1>
-      <TeamCircle/>
+      <TeamCircle ref={teamCircleRef}/>
+      <Slider/>
       <DateDropdown onSelectDate={setSelectedDate}/>
       {error ? (
         <p>Error: {error}</p>
@@ -91,7 +95,7 @@ const News = () => {
                         alt={transfer.to_team.name}
                       />
                       )}
-                     
+                
                     </div>
                   ))
                 ) : (

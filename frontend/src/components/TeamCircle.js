@@ -1,7 +1,7 @@
 import teamLogoMap from "./TeamLogoMap";
 import classes from "./TeamCircle.module.css";
 
-const TeamCircle = () => {
+const TeamCircle = (props) => {
   const teamLogos = Object.entries(teamLogoMap);
 
   return (
