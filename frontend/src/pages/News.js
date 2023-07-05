@@ -10,6 +10,7 @@ const News = () => {
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
+  const [headshots, setHeadshots] = useState({});
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -23,6 +24,7 @@ const News = () => {
 
         setNews(jsonData.players);
         setLoaded(true);
+        fetchHeadshots(jsonData.players.map(player => player.reference));
       } catch (error) {
         console.log(error);
         setError("Failed to retrieve transactions");
@@ -33,14 +35,24 @@ const News = () => {
     }
     
   }, [selectedDate]);
-  // const formattedTimes = news.map((player) => {
-  //   if (player.transfers && player.transfers.length > 0) {
-  //     return player.transfers.map((transfer) =>
-  //       useTimeFormatter(new Date(transfer.last_modified))
-  //     );
-  //   }
-  //   return [];
-  // });
+
+  const fetchHeadshots = async (playerReferences) => {
+    try {
+      const headshotsMap = {};
+
+      const headshotRequests = playerReferences.map(async (reference) => {
+        const playerId = reference.split(":").pop();
+        const headshotUrl = `https://cdn.nba.com/headshots/nba/latest/1040x760/${playerId}.png`;
+        headshotsMap[reference] = headshotUrl;
+      });
+
+      await Promise.all(headshotRequests);
+      setHeadshots(headshotsMap);
+    } catch (error) {
+      console.error("Error occurred while fetching headshots.", error);
+    }
+  };
+   
 
   return (
     <div>
@@ -51,7 +63,7 @@ const News = () => {
       ) : (
         <div>
           {loaded ? (
-            news.map((player, index) => (
+            news.map((player) => (
               <div key={player.id}>
                 {player.transfers && player.transfers.length > 0 ? (
                   player.transfers.map((transfer) => (
@@ -69,7 +81,12 @@ const News = () => {
                         alt={transfer.to_team.name}
                       />
                       )}
-                      {/* <p>{formattedTimes[index][1]}</p> */}
+                     {headshots[player.reference] && (
+                        <img
+                          src={headshots[player.reference]}
+                          alt={player.full_name}
+                        />
+                      )}
                     </div>
                   ))
                 ) : (
