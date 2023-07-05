@@ -3,6 +3,7 @@ import teamLogoMap from "../components/TeamLogoMap";
 import classes from './News.module.css'
 import useTimeFormatter from "../hooks/useTimeFormatter";
 import DateDropdown from "../components/DateDropdown";
+import TeamCircle from "../components/TeamCircle";
 // import DateDropdown from "../components/DateDropdown";
 
 const News = () => {
@@ -12,7 +13,6 @@ const News = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [headshots, setHeadshots] = useState({});
 
- 
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -59,6 +59,7 @@ const News = () => {
   return (
     <div>
       <h1>Recent free agency news</h1>
+      <TeamCircle/>
       <DateDropdown onSelectDate={setSelectedDate}/>
       {error ? (
         <p>Error: {error}</p>
