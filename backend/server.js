@@ -55,19 +55,19 @@ app.get('/transactions', async (req, res, next) => {
   }
 });
 
-// app.get('/headshot', async (req, res, next) => {
+app.get('/headshot', async (req, res, next) => {
   
-//   try {
-//     const {playerId} = req.query;
-//     const apiUrl = `https://cdn.nba.com/headshots/nba/latest/1040x760/${playerId}.png`;
-//     const response = await axios.get(apiUrl, { responseType: 'arraybuffer' });
-//     const headshot = Buffer.from(response.data, 'binary');
-//     res.set('Content-Type', 'image/png');
-//     res.send(headshot);
-//   } catch (error) {
-//     console.error('Error occurred while fetching headshot.')
-//   }
-// })
+  try {
+    const {playerId} = req.query;
+    const apiUrl = `https://cdn.nba.com/headshots/nba/latest/1040x760/${playerId}.png`;
+    const response = await axios.get(apiUrl, { responseType: 'arraybuffer' });
+    const headshot = Buffer.from(response.data, 'binary');
+    res.set('Content-Type', 'image/png');
+    res.send(headshot);
+  } catch (error) {
+    console.error('Error occurred while fetching headshot.')
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

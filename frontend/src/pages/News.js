@@ -30,8 +30,21 @@ const News = () => {
         console.log(jsonData.players);
 
         setNews(jsonData.players);
-
-        
+        // const updatedNews = jsonData.players.map((player) => {
+        //   if (player.transfers && player.transfers.length > 0) {
+        //     return {
+        //       ...player,
+        //       transfers: player.transfers.map((transfer) => {
+        //         return {
+        //           ...transfer,
+        //           to_team_logo: teamLogoMap[transfer.to_team.reference]
+        //         };
+        //       })
+        //     };
+        //   }
+        //   return player;
+        // });
+        // setNews(updatedNews);
 
         setLoaded(true);
         fetchHeadshots(jsonData.players.map((player) => player.reference));
@@ -66,7 +79,7 @@ const News = () => {
   return (
     <div>
       <h1>Recent free agency news</h1>
-      <TeamCircle  />
+      <TeamCircle/>
       <Slider />
       <DateDropdown onSelectDate={setSelectedDate} />
       {error ? (

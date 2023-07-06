@@ -1,7 +1,7 @@
 import teamLogoMap from "./TeamLogoMap";
 import classes from "./TeamCircle.module.css";
 
-const TeamCircle = (props) => {
+const TeamCircle = ({news, headshots}) => {
   const teamLogos = Object.entries(teamLogoMap);
 
   return (
@@ -13,6 +13,7 @@ const TeamCircle = (props) => {
           alt={teamReference}
           className={classes.teamLogo}
         />
+        
       ))}
     </div>
   );
