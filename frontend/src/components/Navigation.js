@@ -19,22 +19,33 @@ const Navigation = () => {
           </li>
           <li>
             <NavLink
-              to="/list"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              List
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
               to="/news"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
             >
-              News
+              Confirmed Transactions
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/list"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Available Free Agents
+            </NavLink>
+          </li>
+          
+          <li>
+            <NavLink
+              to="/tweets"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Tweets
             </NavLink>
           </li>
         </ul>
