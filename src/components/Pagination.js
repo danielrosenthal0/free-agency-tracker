@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import classes from './Pagination.module.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     
@@ -27,7 +26,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     return buttons;
   };
 
-  return <div className={classes.pagination}>{renderPaginationButtons()}</div>;
+  return <div className="pagination">{renderPaginationButtons()}</div>;
 };
 
 export default Pagination;

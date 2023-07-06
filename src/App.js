@@ -4,7 +4,6 @@ import ErrorPage from "./pages/ErrorPage";
 import List from './pages/List';
 import Home from "./pages/Home";
 import News from "./pages/News";
-import Tweets from './pages/Tweets';
 
 
 const router = createBrowserRouter([
@@ -29,10 +28,6 @@ const router = createBrowserRouter([
       {
         path: '/news',
         element: <News/>
-      },
-      {
-        path: '/tweets',
-        element: <Tweets/>
       }
     ]
   }
